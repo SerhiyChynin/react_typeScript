@@ -7,6 +7,7 @@ import { ITodo } from './types/types';
 import axios from 'axios';
 import UserItem from './component/UserItem';
 import TodoItem from './component/TodoItem';
+import EventsExample from './component/EventsExample';
 
 const App = () => {
   // const users: IUser[] = [
@@ -46,7 +47,7 @@ const App = () => {
     async function fetchTodos() {
     try {
       const response = await axios.get<ITodo[]>('https://jsonplaceholder.typicode.com/todos?_limit=20')
-      console.log(response.data);
+      // console.log(response.data);
       setTodos(response.data)
     }
     catch (er) {
@@ -57,6 +58,7 @@ const App = () => {
 
   return (
     <div>
+      <EventsExample/>
       <Card onClick={(num:number)=> console.log('click', num)} variant={CardVariant.primary} width='200px' height='200px'>
         <button>Tap me!</button>
         <div>Hello World!</div>
