@@ -5,14 +5,14 @@ import axios from "axios";
 import { useParams } from 'react-router-dom';
 
 
-interface UserItemPageParams {
+type UserItemPageParams = {
     id: string;   
-}
+};
 
 const UserItemPage: FC = () => {
 
     const [user, setUser] = useState<IUser | null>(null);
-    // const params = useParams<UserItemPageParams>();
+    const params = useParams<UserItemPageParams>();
 
     useEffect(() => {
     fetchUser()
@@ -21,7 +21,7 @@ const UserItemPage: FC = () => {
 
   async function fetchUser() {
     try {
-      const response = await axios.get<IUser>('https://jsonplaceholder.typicode.com/users/1')
+      const response = await axios.get<IUser>('https://jsonplaceholder.typicode.com/users/' + params.id)
       // console.log(response.data);
       setUser(response.data)
     }
