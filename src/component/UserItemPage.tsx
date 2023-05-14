@@ -2,7 +2,7 @@ import React, { FC } from "react"
 import { useState, useEffect } from 'react';
 import { IUser, ITodo } from "../types/types";
 import axios from "axios";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 type UserItemPageParams = {
@@ -11,8 +11,10 @@ type UserItemPageParams = {
 
 const UserItemPage: FC = () => {
 
-    const [user, setUser] = useState<IUser | null>(null);
-    const params = useParams<UserItemPageParams>();
+  const [user, setUser] = useState<IUser | null>(null);
+  const params = useParams<UserItemPageParams>();
+  const history = useNavigate();
+  
 
     useEffect(() => {
     fetchUser()
@@ -31,7 +33,7 @@ const UserItemPage: FC = () => {
   }
     return (
         <div>
-            <button>Back</button>
+            <button onClick={()=> history('/users')}>Back</button>
             <h1>User {user?.name}</h1>
             <div>{user?.email}</div>
             <div>{user?.address.street}</div>
